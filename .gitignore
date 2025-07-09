@@ -1,0 +1,17 @@
+# .gitignore content
+# Virtual environment
+venv/
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Editor/OS specific files
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
