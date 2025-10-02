@@ -5,6 +5,10 @@ from flask_cors import CORS # For handling Cross-Origin Resource Sharing
 from config import Config
 from routes.favicon import favicon_bp
 from routes.dns import dns_bp
+from routes.minify_html import minify_html_bp
+from routes.header_checker import header_checker_bp
+from routes.policy_generator import policy_generator_bp
+from routes.whois_checker import whois_checker_bp
 from utils import create_response
 
 app = Flask(__name__)
@@ -19,6 +23,10 @@ CORS(app, resources={r"/*": {"origins": Config.CORS_ALLOW_ORIGIN}})
 # Register blueprints
 app.register_blueprint(favicon_bp)
 app.register_blueprint(dns_bp)
+app.register_blueprint(minify_html_bp)
+app.register_blueprint(header_checker_bp) 
+app.register_blueprint(policy_generator_bp) 
+app.register_blueprint(whois_checker_bp) 
 
 # --- Global Error Handlers ---
 @app.errorhandler(404)
@@ -30,6 +38,7 @@ def not_found_error(error):
         status_code=404
     )
     return jsonify(response), status_code
+
 
 @app.errorhandler(500)
 def internal_error(error):
